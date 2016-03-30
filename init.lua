@@ -181,9 +181,35 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Down", function()
   win:setFrame(f)
 end)
 
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "S", function()
+  displayCurrentTrack()
+end)
+
+-- Spotify
+local as = require "hs.applescript"
+
+-- Internal function to pass a command to Applescript.
+local function tell(cmd)
+  local _cmd = 'tell application "Spotify" to ' .. cmd
+  local ok, result = as.applescript(_cmd)
+  if ok then
+    return result
+  else
+    return nil
+  end
+end
+
+function displayCurrentTrack()
+  local artist = tell('artist of the current track') or "Unknown artist"
+  local album  = tell('album of the current track') or "Unknown album"
+  local track  = tell('name of the current track') or "Unknown track"
+  hs.notify.new({title=artist, informativeText=track .. " - " .. album}):send():release()
+end
 
 function reload_config(files)
     hs.reload()
 end
+
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reload_config):start()
+
 hs.alert.show("Config loaded")
