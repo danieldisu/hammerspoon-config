@@ -1,201 +1,58 @@
 hs.grid.GRIDHEIGHT = 5
 hs.grid.GRIDWIDTH = 5
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "W", function()
-  hs.alert.show("Hello World!")
+-- CMD + SHIFT + CTRL
+
+-- fullscreen
+hs.hotkey.bind({"cmd", "ctrl", "shift"}, "Q", function()
+  centered(1, 1)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "E", function()
-	local spotify = hs.spotify
-	spotify.displayCurrentTrack()
+-- centered
+hs.hotkey.bind({"cmd", "ctrl", "shift"}, "W", function()
+  centered(0.80, 0.90)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "F", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
-  win:setFrame(f)
+-- centered smaller
+hs.hotkey.bind({"cmd", "ctrl", "shift"}, "E", function()
+  centered(0.70, 0.80)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "C", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+-- left 70% right 30%
 
-  f.w = max.w * 0.95
-  f.h = max.h * 0.95
-
-  f.x = max.x + (f.w * 0.025)
-  f.y = max.y + (f.h * 0.025)
-  win:setFrame(f)
+hs.hotkey.bind({"cmd", "ctrl", "shift", "alt"}, "Left", function()
+  pushLeft(0.7)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "V", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.w = max.w * 0.9
-  f.h = max.h * 0.9
-
-  f.x = max.x + (f.w * 0.05)
-  f.y = max.y + (f.h * 0.05)
-  win:setFrame(f)
+hs.hotkey.bind({"cmd", "ctrl", "shift", "alt"}, "Right", function()
+  pushRight(0.3)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "B", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
 
-  f.w = max.w * 0.8
-  f.h = max.h * 0.8
+-- left 50% right 50%
 
-  f.x = max.x + (f.w * 0.1)
-  f.y = max.y + (f.h * 0.1)
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "N", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.w = max.w * 0.7
-  f.h = max.h * 0.7
-
-  f.x = max.x + (f.w * 0.2)
-  f.y = max.y + (f.h * 0.2)
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "M", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.w = max.w * 0.6
-  f.h = max.h * 0.6
-
-  f.x = max.x + (f.w * 0.3)
-  f.y = max.y + (f.h * 0.3)
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "D", function()
- 	local grid = require "hs.grid"
-	hs.grid.pushWindowNextScreen()
-end)
-
--- hs.hotkey.bind({"cmd", "ctrl"}, "LEFT", function()
---  	local grid = require "hs.grid"
--- 	hs.grid.resizeWindowThinner()
--- end)
-
--- hs.hotkey.bind({"cmd", "ctrl"}, "Right", function()
---  	local grid = require "hs.grid"
--- 	hs.grid.resizeWindowWider()
--- end)
-
-hs.hotkey.bind({"cmd", "ctrl"}, "Down", function()
- 	local grid = require "hs.grid"
-	hs.grid.resizeWindowTaller()
-end)
-
-hs.hotkey.bind({"cmd", "ctrl"}, "Up", function()
- 	local grid = require "hs.grid"
-	hs.grid.resizeWindowShorter()
+hs.hotkey.bind({"cmd", "ctrl", "shift"}, "Left", function()
+  pushLeft(0.5)
 end)
 
 hs.hotkey.bind({"cmd", "ctrl", "shift"}, "Right", function()
- 	local grid = require "hs.grid"
-	hs.grid.pushWindowRight()
+  pushRight(0.5)
 end)
 
-hs.hotkey.bind({"cmd", "ctrl", "shift"}, "Left", function()
- 	local grid = require "hs.grid"
-	hs.grid.pushWindowLeft()
+-- up / down
+hs.hotkey.bind({"cmd", "ctrl", "shift"}, "up", function()
+  pushTop(0.5)
 end)
 
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Right", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x + (max.w / 2)
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
+hs.hotkey.bind({"cmd", "ctrl", "shift"}, "down", function()
+  pushDown(0.5)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Left", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+-- Move current window to next screen
 
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w / 2
-  f.h = max.h
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Up", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Down", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x 
-  f.y = max.y + (max.h / 2)
-  f.w = max.w
-  f.h = max.h / 2
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "-", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h - 50
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "S", function()
-  displayCurrentTrack()
+hs.hotkey.bind({"cmd", "ctrl", "shift"}, "D", function()
+  local grid = require "hs.grid"
+ hs.grid.pushWindowNextScreen()
 end)
 
 -- Spotify
@@ -210,6 +67,102 @@ local function tell(cmd)
   else
     return nil
   end
+end
+
+function centered(widthPercentage, heightPercentage)
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.w = max.w * widthPercentage
+  f.h = max.h * heightPercentage
+
+  local percentageOfVerticalPadding = ((1 - widthPercentage)/ 2)
+  local percentageOfHorizontalPadding = ((1 - heightPercentage)/ 2)
+  local xPosition = max.w * percentageOfVerticalPadding
+  local yPosition = max.h * percentageOfHorizontalPadding
+
+  f.x = max.x + xPosition
+  f.y = max.y + yPosition
+  win:setFrame(f)
+end
+
+function centeredTop(widthPercentage, heightPercentage)
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.w = max.w * widthPercentage
+  f.h = max.h * heightPercentage
+
+  local percentageOfVerticalPadding = ((1 - widthPercentage)/ 2)
+  local percentageOfHorizontalPadding = ((1 - heightPercentage)/ 2)
+  local xPosition = max.w * percentageOfVerticalPadding
+  local yPosition = 0
+
+  f.x = max.x + xPosition
+  f.y = max.y + yPosition
+  win:setFrame(f)
+end
+
+function pushLeft(widthPercentage)
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y
+  f.w = (max.w * widthPercentage)
+  f.h = max.h
+  win:setFrame(f)
+end
+
+function pushRight(widthPercentage)
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  local desiredWidth = (max.w * widthPercentage)
+
+  f.x = max.w - desiredWidth
+  f.y = max.y
+  f.w = desiredWidth
+  f.h = max.h
+  win:setFrame(f)
+end
+
+function pushTop(heightPercentage)
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  local desiredHeight = (max.h * heightPercentage)
+
+  f.x = 0
+  f.y = 0
+  f.w = max.w
+  f.h = desiredHeight
+  win:setFrame(f)
+end
+
+function pushDown(heightPercentage)
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  local desiredHeight = (max.h * heightPercentage)
+
+  f.x = 0
+  f.y = max.h - desiredHeight
+  f.w = max.w
+  f.h = desiredHeight
+  win:setFrame(f)
 end
 
 function displayCurrentTrack()
